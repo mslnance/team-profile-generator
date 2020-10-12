@@ -1,7 +1,78 @@
-module.exports = templateData => {
-    // destructure page data by section
-    const { manager, enginer, intern } = templateData;
+
+const generateManager = Managers => {
+ 
+  return `
+    <div class="col-sm">
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header text-white bg-primary">
+          <h5>${Managers.name}</h5>
+          <h5><i class="fas fa-mug-hot mr-2"></i>${Managers.role}</h5>
+        </div> 
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${Managers.id}</li>
+            <li class="list-group-item">Email: <a href="mailto:${Managers.email}">${Managers.email}</a></li>
+            <li class="list-group-item">Office Number: ${Managers.officeNumber}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+const generateEngineer = engineersArr => {
   
+  return `
+  ${engineersArr
+    .map(({ name, id, email, github, role  }) => {
+      return `
+    <div class="col-sm">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header text-white bg-primary">
+            <h5>${name}</h5>
+            <h5><i class="fas fa-glasses mr-2"></i>${role}</h5>
+          </div> 
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">ID: ${id}</li>
+              <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
+              <li class="list-group-item">GitHub: <a href="https://github.com/${github}" target="_blank" rel="noopener noreferrer">${github}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      `;
+    })
+    .join('')}
+`};
+
+const generateIntern = internsArr => {
+ 
+  return `
+  ${internsArr
+    .map(({ name, id, email, school, role}) => {
+      return `
+    <div class="col-sm">
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+          <div class="card-header text-white bg-primary">
+            <h5>${name}</h5>
+            <h5><i class="fas fa-user-graduate mr-2"></i>${role}</h5>
+          </div> 
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">ID: ${id}</li>
+              <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
+              <li class="list-group-item">School: ${school}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      `;
+    })
+    .join('')}
+`};
+module.exports = (templateData ) => {
+  const {interns, engineers, ...manager } = templateData;
     return `
 <!DOCTYPE html>
 <html lang="en">
@@ -12,105 +83,33 @@ module.exports = templateData => {
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Portfolio Demo</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> -->
-      <!-- <link rel="stylesheet" href="style.css"> -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> -->
+      
     </head>
   
     <body>
         <nav class="navbar text-light bg-danger justify-content-center">
             <span class="navbar-brand mb-0 h1">My Team</span>
         </nav>
-      <main class="container my-5">
-        <div class="container">
+        <main class="container my-5">
+          <div class="container">
             <div class="row">
-            ***********************************************************************************************            
-                <div class="col-sm">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-white bg-primary">
-                            <h5>Fullname</h5>
-                            <h5>Title</h5>
-                        </div> 
-                        <div class="card-body">
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
-            ***********************************************************************************************        
-                <div class="col-sm">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-white bg-primary">
-                            <h5>Fullname</h5>
-                            <h5>Title</h5>
-                        </div> 
-                        <div class="card-body">
-                          
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>  
-                <div class="col-sm">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-white bg-primary">
-                            <h5>Fullname</h5>
-                            <h5>Title</h5>
-                        </div> 
-                        <div class="card-body">
-                          
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-white bg-primary">
-                            <h5>Fullname</h5>
-                            <h5>Title</h5>
-                        </div> 
-                        <div class="card-body">
-                          
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-white bg-primary">
-                            <h5>Fullname</h5>
-                            <h5>Title</h5>
-                        </div> 
-                        <div class="card-body">
-                          
-                          <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                          </ul>
-                        </div>
-                    </div>
-                </div>
+      
+            ${generateManager(manager)} 
+            ${generateEngineer(engineers)}  
+            ${generateIntern(interns)}               
+                
+            
             </div>
           </div>
       </main>
       
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- <script src="./assets/js/script.js"></script> -->
+    
     </body>
 </html>`
-}
+};
+
+
+
