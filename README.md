@@ -39,4 +39,7 @@ This challenge was to create a Node.js command application that takes in informa
 
   ## Screenshot
   ![Screenshot](./Screenshot.PNG?raw=true "Screenshot")
+  
+  ## Walkthrough Video
+  https://drive.google.com/file/d/1nlnue_wcmNbDAaBJF-SIeqpzFJgnM1XI/view
 
